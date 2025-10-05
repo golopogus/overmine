@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://15d6kjfxhuns"]
+
+[ext_resource type="Script" uid="uid://c4s62xpkh1som" path="res://main_scene.gd" id="1_2c62f"]
+[ext_resource type="Texture2D" uid="uid://b37axdpa1v3yc" path="res://pics/hidden.png" id="2_gyfs4"]
+
+[node name="main_scene" type="Node2D"]
+script = ExtResource("1_2c62f")
+
+[node name="sprites" type="Node2D" parent="."]
+visible = false
+
+[node name="hidden_tile" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("2_gyfs4")
+
+[node name="tiles" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)

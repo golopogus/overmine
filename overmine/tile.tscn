@@ -1,0 +1,82 @@
+[gd_scene load_steps=17 format=3 uid="uid://smxg2n7ampru"]
+
+[ext_resource type="Script" uid="uid://13gthypns80j" path="res://tile.gd" id="1_77ig6"]
+[ext_resource type="Texture2D" uid="uid://b37axdpa1v3yc" path="res://pics/hidden.png" id="1_n3f48"]
+[ext_resource type="Texture2D" uid="uid://dxcp8skgg2nn0" path="res://pics/mine.png" id="3_uosvd"]
+[ext_resource type="Texture2D" uid="uid://daocwjd3f7fho" path="res://pics/mineClicked.png" id="4_5nv3a"]
+[ext_resource type="Texture2D" uid="uid://cyhf6iddynxcc" path="res://pics/mineWrong.png" id="5_2hmrm"]
+[ext_resource type="Texture2D" uid="uid://bwjbahinapdql" path="res://pics/safe.png" id="6_5ruwl"]
+[ext_resource type="Texture2D" uid="uid://b8euc2cv6v17l" path="res://pics/testTileHovered.png" id="7_vku65"]
+[ext_resource type="Texture2D" uid="uid://cldtjsgskq8xf" path="res://pics/testTilePressed.png" id="8_t3ugx"]
+[ext_resource type="Texture2D" uid="uid://cc1fbrmwnfiy3" path="res://pics/warningOne.png" id="9_fphfx"]
+[ext_resource type="Texture2D" uid="uid://do4i31nreahxh" path="res://pics/warningTwo.png" id="10_81b1i"]
+[ext_resource type="Texture2D" uid="uid://ctj28tvxnsots" path="res://pics/warningThree.png" id="11_hkah3"]
+[ext_resource type="Texture2D" uid="uid://p0o42bkp3dya" path="res://pics/warningFour.png" id="12_481hn"]
+[ext_resource type="Texture2D" uid="uid://baqht52o170x3" path="res://pics/warningFive.png" id="13_djtxh"]
+[ext_resource type="Texture2D" uid="uid://bmyj10gji2cod" path="res://pics/warningSix.png" id="14_ua444"]
+[ext_resource type="Texture2D" uid="uid://dds0vhbvie4nq" path="res://pics/warningSeven.png" id="15_3rhrr"]
+[ext_resource type="Texture2D" uid="uid://d2ghqr7m6flod" path="res://pics/warningEight.png" id="16_pea0d"]
+
+[node name="tile" type="Node2D"]
+script = ExtResource("1_77ig6")
+
+[node name="sprites" type="Node2D" parent="."]
+
+[node name="hidden" type="Sprite2D" parent="sprites"]
+texture = ExtResource("1_n3f48")
+
+[node name="mine" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("3_uosvd")
+
+[node name="mine_clicked" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("4_5nv3a")
+
+[node name="mine_wrong" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("5_2hmrm")
+
+[node name="safe" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("6_5ruwl")
+
+[node name="hover" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("7_vku65")
+
+[node name="press" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("8_t3ugx")
+
+[node name="1" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("9_fphfx")
+
+[node name="2" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("10_81b1i")
+
+[node name="3" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("11_hkah3")
+
+[node name="4" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("12_481hn")
+
+[node name="5" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("13_djtxh")
+
+[node name="6" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("14_ua444")
+
+[node name="7" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("15_3rhrr")
+
+[node name="8" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("16_pea0d")
