@@ -12,6 +12,7 @@ var number_of_mines = 720
 var unused_pos = []
 var moveable = false
 var local_mous_pos
+var current_boundary
 
 #in form of node name: pos, type etc
 # pos = [tile.name, 'unknown' (type), value, true (hidden)]
