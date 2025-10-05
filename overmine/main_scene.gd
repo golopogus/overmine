@@ -1,24 +1,37 @@
 extends Node2D
 
-const grid_size_options = [[8,8],[30,16]]
-var chosen_grid_size = grid_size_options[1]
+const grid_size_options = [[80,45],[50,50]]
+var chosen_grid_size = grid_size_options[0]
+var num_of_chunks = 27
 var initial_pos = Vector2(8,8)
 var x_length
 var y_length
 var midpoint
 var gamestart = false
-var number_of_mines = 99
+var number_of_mines = 720
 var unused_pos = []
+var moveable = false
+var local_mous_pos
+
 #in form of node name: pos, type etc
 # pos = [tile.name, 'unknown' (type), value, true (hidden)]
 var tile_dict = {}
 #PRELOADS
 var tile_load = preload("res://tile.tscn")
-
+var test_load = preload("res://test.tscn")
 func _ready() -> void:
 	spawn_tiles()
-
+	var viewport_size = get_viewport_rect().size
+	$Camera2D.position = viewport_size/2
 # feed how big visible space is and where to initialize 1st cell
+
+func _process(delta: float) -> void:
+	
+	if moveable == true:
+		var difference = local_mous_pos - get_global_mouse_position()
+		$Camera2D.position += difference
+		
+	
 func spawn_tiles():
 	
 	var x_tiles = chosen_grid_size[0]
@@ -50,6 +63,14 @@ func _unhandled_input(_event: InputEvent) -> void:
 				pre_click_check(nearest_tile_pos)
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
+	
+	if Input.is_action_pressed("pan"):
+		if moveable == false:
+			local_mous_pos = get_global_mouse_position()
+		moveable = true
+	if Input.is_action_just_released("pan"):
+		moveable = false
+		
 
 func initiate_board(click_pos):
 	gamestart = true
