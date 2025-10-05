@@ -3,6 +3,7 @@ extends Node2D
 var danger = false
 var state
 var value
+var state_changed = false
 
 func change_state(new_state, warning_num):
 	#$sprites/hidden.visible = false
@@ -22,19 +23,21 @@ func change_state(new_state, warning_num):
 			value = warning_num
 		
 func clicked():
-	$sprites/hidden.visible = false
-	
-	match state:
-		'safe':
-			$sprites/safe.visible = true
-	
-		'mine': 
-			$sprites/mine_clicked.visible = true
+	if state_changed == false:
+		$sprites/hidden.visible = false
 		
-		'warning':
-			var node_path = 'sprites/' + str(value)
-			node_path.visible = true
-					
+		match state:
+			'safe':
+				$sprites/safe.visible = true
+		
+			'mine': 
+				$sprites/mine_clicked.visible = true
+			
+			'warning':
+				var node_path = 'sprites/' + str(value)
+				node_path.visible = true
+		
+		state_changed = true	
 			
 
 	

@@ -53,7 +53,7 @@ func initiate_mines(click_pos):
 	
 	#turn first click safe
 	
-	get_node(starting_tile_path).change_state('safe')
+	get_node(starting_tile_path).change_state('safe',0)
 	get_node(starting_tile_path).clicked()
 	
 	
