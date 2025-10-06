@@ -1,6 +1,6 @@
 extends Node2D
 
-const grid_size_options = [[80,45],[50,50]]
+const grid_size_options = [[8,8],[50,50]]
 var chosen_grid_size = grid_size_options[0]
 var num_of_chunks = 27
 var initial_pos = Vector2(8,8)
@@ -8,7 +8,7 @@ var x_length
 var y_length
 var midpoint
 var gamestart = false
-var number_of_mines = 720
+var number_of_mines = 10
 var unused_pos = []
 var moveable = false
 var local_mous_pos
@@ -23,7 +23,7 @@ var test_load = preload("res://test.tscn")
 func _ready() -> void:
 	spawn_tiles()
 	var viewport_size = get_viewport_rect().size
-	$Camera2D.position = viewport_size/2
+	$Camera2D.position = Vector2(chosen_grid_size[0],chosen_grid_size[1]) * 8
 # feed how big visible space is and where to initialize 1st cell
 
 func _process(delta: float) -> void:
@@ -34,22 +34,27 @@ func _process(delta: float) -> void:
 		
 	
 func spawn_tiles():
-	
-	var x_tiles = chosen_grid_size[0]
-	var y_tiles = chosen_grid_size[1]
-	#first need to find positions for each tile
 	x_length = $sprites/hidden_tile.texture.get_width()
 	y_length = $sprites/hidden_tile.texture.get_height()
 	midpoint = Vector2(x_length/2,y_length/2)
+	var pos = Vector2()
+	#var game_neighbors = create_neighbors(pos)
+	#game_neighbors.append(pos)
+	#for i in game_neighbors:
+		
+	var x_tiles = chosen_grid_size[0]
+	var y_tiles = chosen_grid_size[1]
+	#first need to find positions for each tile
+
 	
 	for x in x_tiles:
 		for y in y_tiles:
 			var tile = tile_load.instantiate()
 			$tiles.add_child(tile)
-			tile.position = Vector2(initial_pos.x + x_length * x, initial_pos.y + y_length * y )
+			tile.position = Vector2(x_length * x,y_length * y ) + initial_pos
 			unused_pos.append(tile.position)
 			tile_dict[tile.position] = [tile.name, 'unknown', 0, true]
-
+	print(tile_dict)
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click"):
 		if get_global_mouse_position().x >= 0 and get_global_mouse_position().x <= chosen_grid_size[0] * x_length and get_global_mouse_position().y >= 0 and get_global_mouse_position().y <= chosen_grid_size[1] * y_length:
@@ -144,6 +149,7 @@ func pre_click_check(pos):
 				update_neighbors(pos,'safe')
 
 func create_neighbors(pos):
+	
 	var n = Vector2(pos.x, pos.y - y_length)
 	var ne = Vector2(pos.x + x_length, pos.y - y_length)
 	var e = Vector2(pos.x + x_length, pos.y)
